@@ -74,22 +74,16 @@ WSGI_APPLICATION = 'newapp.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
-'''
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'mydatabase',
-        'USER': 'mydatabaseuser',
-        'PASSWORD': 'mypassword',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': os.environ["PGDATABASE"],
+        'USER': os.environ["PGUSER"],
+        'PASSWORD': os.environ["PGPASSWORD"],
+        'HOST': os.environ["PGHOST"],
+        'PORT': os.environ["PGPORT"],
     }
-}
-'''
-import dj_database_url
-DATABASE_URL=os.getenv("DATABASE_URL")
-DATABASES={
-    "default":dj_database_url.config(default=DATABASE_URL,conn_max_age=1800),
 }
 
 # Password validation
